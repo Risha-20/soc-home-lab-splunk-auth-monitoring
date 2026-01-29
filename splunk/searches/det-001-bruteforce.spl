@@ -1,1 +1,5 @@
 index=windows EventCode=4625
+| bin _time span=10m
+| stats count as failure_count by user, host, _time
+| where failure_count >= 8
+| sort - failure_count
